@@ -21,7 +21,7 @@
   "plugins": ["react"],
   "rules": {
     "indent": ["warn", "tab"],
-    "quotes": ["error", "single"],
+    "quotes": "off",
     "semi": ["error", "always"],
     "@typescript-eslint/no-empty-interface": "off",
     "no-empty-pattern": "warn",
