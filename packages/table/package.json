@@ -1,0 +1,32 @@
+{
+  "name": "@flowix/table",
+  "version": "0.0.2",
+  "description": "Components related to Table in the Flowix components design system",
+  "license": "Apache-2.0",
+  "author": "Flowix",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs.js",
+  "scripts": {
+    "build": "../../scripts/build.sh"
+  },
+  "homepage": "https://flowix.tech",
+  "repository": "https://github.com/flowix-tech/components",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "styled-components": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "rollup-plugin-delete": "^2.0.0"
+  },
+  "gitHead": "f31b6b7132f23374bb4e2aba4edb9c8057a9448b"
+}

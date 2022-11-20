@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: flowix
+  name: storybook-components
+  annotations:
+    kubernetes.io/ingress-class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: storybook.flowix.tech
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: storybook-components
+              port:
+                number: 80
+
+  tls:
+    - hosts:
+        - storybook.flowix.tech
+      secretName: certificate-storybook-components

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "allowJs": true,
+    "noEmit": true,
+    "useUnknownInCatchVariables": false,
+    "paths": {
+
+    }
+  },
+  "include": ["packages/*/src/**/*"],
+  "exclude": [
+    "packages/.template/*"
+  ]
+}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storybook-components
+  namespace: flowix
+  labels:
+    app: storybook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storybook
+  template:
+    metadata:
+      labels:
+        app: storybook
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: storybook
+          image: "registry.flowix.tech/storybook:latest"
+          imagePullPolicy: 'Always'
+          ports:
+            - containerPort: 80
+              name: port
