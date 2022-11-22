@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Container from "../Container";
-import ChartTitle from "../../common/ChartTitle";
-import { CommonProps } from "../../common/props";
-import BaseChart from "../BaseChart/BaseChart";
+import AxisBottom from '../../common/Axis/AxisBottom';
+import { CommonProps } from '../../types/props';
+import BaseChart from '../../common/BaseChart/BaseChart';
 
-export interface PieChartProps extends CommonProps{
+export interface PieChartProps extends CommonProps {
   data: Record<string, number>;
   width?: number;
   height?: number;
@@ -17,15 +16,13 @@ const Wrapper = styled.div`
   color: #000066;
 `;
 
-const PieChart: React.FC<PieChartProps> = ({
-	data,
-	...props
-}) => {
-	return (
-		<BaseChart {...props}>
-			<h2>sta sad</h2>
-		</BaseChart>
-	);
+const PieChart: React.FC<PieChartProps> = ({ data, ...props }) => {
+  return (
+    <BaseChart {...props}>
+      <h2>sta sad</h2>
+      <AxisBottom />
+    </BaseChart>
+  );
 };
 
 export default PieChart;
