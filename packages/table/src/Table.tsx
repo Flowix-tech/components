@@ -8,12 +8,12 @@ const Wrapper = styled.div`
 `;
 
 const Table: React.FC<TableProps> = ({}) => {
-	return (
-		<Wrapper>
-			<h2>Table</h2>
-			<h3>New</h3>
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      <h2>Table</h2>
+      <h3>New</h3>
+    </Wrapper>
+  );
 };
 
 export default Table;

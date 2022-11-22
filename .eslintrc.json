@@ -20,9 +20,10 @@
   },
   "plugins": ["react"],
   "rules": {
-    "indent": ["warn", "tab"],
+    "indent": "warn",
     "quotes": "off",
     "semi": ["error", "always"],
+    "no-empty": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "no-empty-pattern": "warn",
     "@typescript-eslint/no-var-requires": "off"

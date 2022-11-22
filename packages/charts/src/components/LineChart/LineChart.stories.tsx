@@ -21,24 +21,37 @@ const volumes = [
   { date: '2022-01-09', btc: 1900000, eth: 900000, others: 500000 },
   { date: '2022-01-10', btc: 1900000, eth: 900000, others: 500000 },
   { date: '2022-01-11', btc: 800000, eth: 500000, others: 200000 },
-  { date: '2022-01-12', btc: 4400000, eth: 1800000, others: 1000000 }
+  { date: '2022-01-12', btc: 4400000, eth: 1800000, others: 1000000 },
+  { date: '2022-01-13', btc: 4400000, eth: 1800000, others: 1000000 },
+  { date: '2022-01-14', btc: 2200000, eth: 1100000, others: 700000 }
 ];
 
-const serie: DataPoint[] = volumes.map(item => ({ x: item.date, y: item.btc }));
+const series1: DataPoint[] = volumes.map(item => ({ x: item.date, y: item.btc }));
+const series2: DataPoint[] = volumes.map(item => ({ x: item.date, y: item.eth }));
 
 interface Args extends LineChartProps {}
 
+/**
+ *  LineChart with only one time series
+ */
 export const SingleSeries: Story<Args> = ({ ...args }) => {
   return <LineChart {...args} />;
 };
 
 SingleSeries.args = {
-  series: [serie]
+  series: [series1]
 } as Args;
 
+/**
+ *  LineChart with multiple time series
+ */
 export const MultiSeries: Story<Args> = ({ ...args }) => {
   return <LineChart {...args} />;
 };
+
+MultiSeries.args = {
+  series: [series1, series2]
+} as Args;
 
 export const SingleSeriesBothAxis: Story<Args> = ({ ...args }) => {
   return <LineChart {...args} />;

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for charts/src/common/Axis/AxisBottom.tsx</title>
+    <title>Code coverage report for charts/src/common/LineSeries/LineSeries.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">charts/src/common/Axis</a> AxisBottom.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">charts/src/common/LineSeries</a> LineSeries.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -119,32 +119,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,60 +127,86 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as d3 from 'd3';
-import React, { useEffect } from 'react';
-import { ChartContext } from '../BaseChart/BaseChart';
-import { xAxisHeight, yAxisWidth } from '../../constants/chart';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect } from "react";
+import { ChartContext } from "../BaseChart/BaseChart";
+import * as d3 from 'd3';
+import { DataPoint } from "../../types/props";
+import { yAxisWidth } from "../../constants/chart";
 &nbsp;
-interface Props {}
 &nbsp;
+interface Props {
 &nbsp;
-const AxisBottom: React.FC&lt;Props&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span>}) =&gt; {</span>
+}
+&nbsp;
+const LineSeries:React.FC&lt;Props&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
+&nbsp;
+}) =&gt; {
     const chartContext = <span class="cstat-no" title="statement not covered" >React.useContext(ChartContext);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-        // Select target axis and delete it, because we will repaint it
-<span class="cstat-no" title="statement not covered" >        if (chartContext) {</span>
-            const {xValues,xScale} = <span class="cstat-no" title="statement not covered" >chartContext;</span>
-<span class="cstat-no" title="statement not covered" >            d3.select(chartContext.svgRef.current).select(".axis &gt; *[data-label='axis-bottom']").remove();</span>
-            // All time series will share same x value, and will have same length- its design choice
-            // So we can use first as reference
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span>=&gt;{</span>
+<span class="cstat-no" title="statement not covered" >        if (chartContext){</span>
+            const {svgRef,xScale,yScale,xValues} = <span class="cstat-no" title="statement not covered" >chartContext;</span>
+<span class="cstat-no" title="statement not covered" >            d3.select(svgRef.current).select(".series &gt; *").remove();</span>
+            const seriesElem = <span class="cstat-no" title="statement not covered" >d3.select(svgRef.current).select(".series");</span>
+<span class="cstat-no" title="statement not covered" >            for(const [index,currentSeries] of chartContext.series.entries()){</span>
+                const line = <span class="cstat-no" title="statement not covered" >d3.line&lt;DataPoint&gt;()</span>
+                    .x(<span class="fstat-no" title="function not covered" >fu</span>nction(item,index){<span class="cstat-no" title="statement not covered" >return xScale(index);}</span>)
+                    .y(<span class="fstat-no" title="function not covered" >fu</span>nction(item,index) {<span class="cstat-no" title="statement not covered" >return yScale(item.y);}</span>)
+                    .curve(d3.curveCatmullRom.alpha(.5));
 &nbsp;
-            const axis = <span class="cstat-no" title="statement not covered" >d3.select(chartContext.svgRef.current).select('.axis');</span>
-<span class="cstat-no" title="statement not covered" >            axis</span>
-                .append('g')
-                .attr('data-label', 'axis-bottom')
-                .attr('transform', `translate(${yAxisWidth + 10},${chartContext.realHeight + xAxisHeight})`)
-                .attr('class', 'axis-domain')
-                .append('g')
-                .attr('class', 'axis-domain')
-                .attr('fill', 'var(--color-text,black)')
-                .attr('font-family', 'var(--font-family-heading)')
-                .attr('text-anchor', 'middle')
-                .attr('font-size', '12')
-                .selectAll('g')
-                .data(xValues)
-                .enter()
-                .append('g')
-                .attr('class', 'tick')
-                .attr('opacity', '1')
-                .attr('transform', <span class="fstat-no" title="function not covered" >(v</span>alue, index) =&gt; <span class="cstat-no" title="statement not covered" >`translate(${xScale(index)},0)`)</span>
-                .append('text')
-                .attr('fill', 'var(--color-gray-700)')
-                .text(<span class="fstat-no" title="function not covered" >(v</span>alue, index) =&gt; <span class="cstat-no" title="statement not covered" >value)</span>;
+<span class="cstat-no" title="statement not covered" >                console.log("line current series",line(currentSeries));</span>
+<span class="cstat-no" title="statement not covered" >                seriesElem.append("g")</span>
+                    .attr("data-label",`series-${index}`)
+                    .attr("transform",`translate(${yAxisWidth},0)`)
+                    .append("path")
+                    .datum(currentSeries)
+                    .attr("class","line")
+                    .attr("d",line as any)
+                    .attr("stroke","red")
+                    .attr("opacity","1")
+                    .style("fill","none")
+                    .style("stroke-width","2");
+&nbsp;
+            }
         }
     }, [chartContext]);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return null;</span>
 };
 &nbsp;
-export default React.memo(AxisBottom);
+export default LineSeries;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

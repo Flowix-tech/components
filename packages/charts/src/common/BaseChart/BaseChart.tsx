@@ -1,10 +1,12 @@
 import React, { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import ChartTitle from '../../common/ChartTitle';
-import { CommonProps } from '../../types/props';
+import { CommonProps, DataPoint } from '../../types/props';
 import Container from '../../components/Container';
 import * as d3 from 'd3';
-import { getFinalData } from '../../services/data-manipulation';
+import { getFinalData, getMinMaxOfSeries } from '../../services/data-manipulation';
+import { xAxisHeight, yAxisWidth } from '../../constants/chart';
+import { DateTime } from 'luxon';
 
 interface Props extends CommonProps {
   children: React.ReactNode;
@@ -16,16 +18,13 @@ export interface ChartContextI {
   realWidth: number;
   realHeight: number;
   svgRef: React.MutableRefObject<SVGSVGElement>;
-  series: { x: string; y: number }[][];
+  series: DataPoint[][];
+  xScale: d3.ScaleContinuousNumeric<any, any>;
+  xValues: string[];
+  yScale: d3.ScaleContinuousNumeric<any, any>;
 }
 
 export const ChartContext = React.createContext<ChartContextI | undefined>(undefined);
-
-/**
- *  Constants related to chart
- */
-const xAxisHeight = 26;
-const yAxisWidth = 26;
 
 /**
  * Base chart components which render container styles and possible title and description.
@@ -49,6 +48,8 @@ const BaseChart: React.FC<Props> = ({
     height: undefined
   });
 
+  const [chartContext, setChartContext] = React.useState<ChartContextI | null>(null);
+
   const handleResize = useCallback(() => {
     if (outerRef.current) {
       const containerWidth = outerRef.current.offsetWidth;
@@ -70,36 +71,46 @@ const BaseChart: React.FC<Props> = ({
 
   useEffect(() => {
     console.log('BASE CHART -USE EFFECT ');
-    if (dimensions.height && dimensions.width) {
+    if (dimensions.height && dimensions.width && series.length > 0) {
       // reset
       const { width, height } = dimensions;
-      // d3.select(svgRef.current).selectAll("*").remove();
       // Add width and height attribute
       // Add g element for axis and series
-      console.log('Creating width height');
-      const chart = d3.select(svgRef.current).attr('width', width).attr('height', height);
-      // 	.append("g")
-      // 	.attr("class","chart");
-      // // Axis container
-      // chart.append("g").attr("class","axis");
-      // // Series container
-      // chart.append("g").attr("class",'series');
+      d3.select(svgRef.current).attr('width', width).attr('height', height);
+      const finalSeries = getFinalData(series);
+      const realHeight = dimensions.height - xAxisHeight;
+      const realWidth = dimensions.width - yAxisWidth;
+      // ---- xScale -----
+      const first = finalSeries[0];
+      const indexTicks = d3
+        .ticks(0, first.length, 5)
+        .filter(num => num < first.length)
+        .slice(0, -1);
+      const xValues = indexTicks.map(index =>
+        typeof first[index].x === 'string'
+          ? DateTime.fromISO(first[index].x as string).toFormat('LLL, d')
+          : DateTime.fromMillis(first[index].x as number).toFormat('LLL, d')
+      );
+      const xScale = d3.scaleLinear().range([0, realWidth]).domain([0, indexTicks.length]);
+
+      // ---- yScale -----
+      const yDomain = getMinMaxOfSeries(finalSeries);
+      const yScale = d3.scaleLinear().domain(yDomain).range([realHeight, 0]);
+
+      setChartContext({
+        realHeight,
+        realWidth,
+        svgRef,
+        series: finalSeries,
+        yScale,
+        xScale,
+        xValues
+      });
     }
   }, [dimensions]);
 
-  const value = useMemo(
-    () =>
-      ({
-        realHeight: dimensions.height - xAxisHeight,
-        realWidth: dimensions.width - yAxisWidth,
-        svgRef: svgRef,
-        series: getFinalData(series)
-      } as ChartContextI),
-    [dimensions, svgRef]
-  );
-
   return (
-    <ChartContext.Provider value={value}>
+    <ChartContext.Provider value={chartContext}>
       <Container disable={disableContainer} style={style} maxWidth={maxWidth}>
         <ChartTitle title={title} description={description} />
         <ChartContent ref={outerRef}>
@@ -110,7 +121,7 @@ const BaseChart: React.FC<Props> = ({
             </g>
           </svg>
         </ChartContent>
-        {value.realWidth && value.realHeight && children}
+        {children}
       </Container>
     </ChartContext.Provider>
   );
